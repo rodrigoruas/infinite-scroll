@@ -1,0 +1,17 @@
+<%= turbo_frame_tag "posts_#{@page}" do %>
+  <table>
+    <thead>
+      <tr>
+        <td>Title</td>
+        <td>Content</td>
+      </tr>
+    </thead>
+    <tbody>
+      <%= render @posts %>
+    </tbody>
+  </table>
+
+  <% if @next_page %>
+    <%= turbo_frame_tag "posts_#{@next_page}", loading: :lazy, src: posts_path(page: @next_page) %>
+  <% end %>
+<% end %>
